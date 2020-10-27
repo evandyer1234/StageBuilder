@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
     public void Respawn()
     {
         gameObject.transform.position = spawnpoint;
+        rb.velocity = new Vector3(0, 0, 0);
     }
     public void MoveForward(float s)
     {

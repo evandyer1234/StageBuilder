@@ -30,4 +30,15 @@ public class PlayerSpawn : MonoBehaviour
             clone.bottom = bottom - 5f;
         }
     }
+    void Update()
+    {
+        if (Play)
+        {
+            Player clone;
+            clone = Instantiate(player, spawnpoint.transform.position, transform.rotation);
+            clone.spawnpoint = spawnpoint.transform.position;
+            clone.bottom = bottom - 5f;
+            Play = false;
+        }
+    }
 }

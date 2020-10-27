@@ -9,6 +9,10 @@ public class MainMenu : MonoBehaviour
     public GameObject Main;
     public GameObject Levels;
     
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
     public void ToMain()
     {
         Main.SetActive(true);

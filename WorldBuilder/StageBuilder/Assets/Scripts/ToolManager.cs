@@ -4,8 +4,7 @@ using UnityEngine;
 using TMPro;
 
 public class ToolManager : MonoBehaviour
-{
-    //public List<ToolBase> commands = new List<ToolBase>();
+{    
     public GameObject cam;
     ItemPlacer IP;
     ToolDestroy TD;
@@ -31,7 +30,7 @@ public class ToolManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             ToolSwap();                
-        }
+        }               
     }
 
     public void ToolSwap()

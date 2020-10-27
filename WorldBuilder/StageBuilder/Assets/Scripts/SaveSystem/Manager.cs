@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Xml.Serialization;
+using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
@@ -28,12 +30,20 @@ public class Manager : MonoBehaviour
         }
         LoadTheData();
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
     void Awake()
     {
         instance = this;
     }
     public void SaveTheData()
     {
+        file = PlayerPrefs.GetString("Level", "None");
         SD = new SaveData();
         ml.addobjects();
         foreach (GameObject o in objectlist)
@@ -67,6 +77,15 @@ public class Manager : MonoBehaviour
 
         SD = new SaveData();
 
+        if (File.Exists(PlayerPrefs.GetString("Level", "None")))
+        {
+            file = PlayerPrefs.GetString("Level", "None");
+        }
+        else
+        {
+            file = "savedata.xml";
+        }
+
         if (File.Exists(file))
         {
             XmlSerializer x = new XmlSerializer(typeof(SaveData));
@@ -94,6 +113,7 @@ public class Manager : MonoBehaviour
             }
             foreach (GameObject od in objectlist)
             {
+                
                 if (od.transform.position.y < ps.bottom)
                 {
                     ps.bottom = od.transform.position.y;

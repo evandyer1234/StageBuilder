@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ToolDestroy : ToolBase
-{
-    
+{    
     protected Camera cam;
-    
-
-    
+        
     public Color red;
     public Color norm;
     Color Original;
     GameObject last;
     GameObject current;
-    bool first = true;
+    //bool first = true;
 
     void Start()
     {
@@ -23,7 +20,7 @@ public class ToolDestroy : ToolBase
     }
     public override void StartCommand()
     {
-        first = true;
+        //first = true;
     }
 
     void FixedUpdate()
@@ -37,6 +34,7 @@ public class ToolDestroy : ToolBase
 
         if (Physics.Raycast(ray, out hit))
         {
+            /*
             if (last != hit.collider.gameObject && last != null)
             {
                 Renderer rend = hit.collider.gameObject.GetComponent<Renderer>();
@@ -53,12 +51,33 @@ public class ToolDestroy : ToolBase
                     rend.material.color = red;                   
                 }
             }
-           
+            */
+            
+            
+            if (last != hit.collider.gameObject && last != null)
+            {
+                Debug.Log("hit");
+                Renderer rend = hit.collider.gameObject.GetComponent<Renderer>();
+                current = hit.collider.gameObject;
+                placeable p = last.GetComponent<placeable>();
+
+                if (p == null)
+                {
+                    p = last.GetComponentInParent<placeable>();
+                }
+                if (p != null)
+                {
+                    p.ResetColor();
+                }
+                rend.material.color = red;
+                
+            }
             if (Input.GetMouseButtonDown(0))
             {
                 MouseButton();
             }
             last = hit.collider.gameObject;
+
         }
         
     }
@@ -87,10 +106,13 @@ public class ToolDestroy : ToolBase
     }
     public override void EndCommand()
     {
-        Renderer rend = current.GetComponent<Renderer>();
-        if (rend != null)
+        if (current != null)
         {
-            rend.material.color = Original;
+            placeable rend = current.GetComponent<placeable>();
+            if (rend != null)
+            {
+                rend.ResetColor();
+            }
         }
     }
 }

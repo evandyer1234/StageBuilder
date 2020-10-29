@@ -8,6 +8,7 @@ public class EndGoal : MonoBehaviour
     public float wait = 2f;
     public GameObject wintext;
     bool end = false;
+    public GameObject spinner;
 
     void FixedUpdate()
     {
@@ -26,6 +27,7 @@ public class EndGoal : MonoBehaviour
         if (p != null)
         {
             win();
+            p.cam.transform.SetParent(spinner.transform);
         }
     }
     public void win()

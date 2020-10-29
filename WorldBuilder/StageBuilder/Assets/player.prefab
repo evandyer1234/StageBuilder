@@ -198,6 +198,7 @@ MonoBehaviour:
   spawnpoint: {x: 0, y: 0, z: 0}
   bottom: -5
   grounded: 0
+  cam: {fileID: 3423496180525342836}
 --- !u!136 &3423496180469908691
 CapsuleCollider:
   m_ObjectHideFlags: 0

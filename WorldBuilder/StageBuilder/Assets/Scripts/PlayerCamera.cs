@@ -13,6 +13,9 @@ public class PlayerCamera : MonoBehaviour
     public Transform playerBody;
     public float XRotate = 0f;
     public Manager manager;
+    public GameObject main;
+    public GameObject contr;
+    bool con = false;
     
     void Start()
     {
@@ -32,6 +35,20 @@ public class PlayerCamera : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.O))
         {
             manager.LoadTheData();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            if (con)
+            {
+                main.SetActive(false);
+                contr.SetActive(true);
+            }
+            else
+            {
+                main.SetActive(true);
+                contr.SetActive(false);
+            }
+            con = !con;             
         }
     }
    

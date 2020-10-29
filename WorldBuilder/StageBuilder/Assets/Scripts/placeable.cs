@@ -14,8 +14,16 @@ public class placeable : MonoBehaviour
     
 
     void Start()
-    {  
-        norm = rend.material.color;
+    {
+        rend = GetComponent<Renderer>();
+        if (rend == null)
+        {
+            rend = GetComponentInChildren<Renderer>();
+        }
+        if (rend != null)
+        {
+            norm = rend.material.color;
+        }
     }
     public void GetLocalData()
     {

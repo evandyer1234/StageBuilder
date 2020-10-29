@@ -36,17 +36,9 @@ public class ToolManager : MonoBehaviour
     public void ToolSwap()
     {
         
-        if (listindex + 1 <= tools)
-        {          
-            listindex++;           
-        }
-        else
-        {            
-            listindex = 0;           
-        }
-        
-        if (listindex == 0)
+        if (listindex == 2)
         {
+            listindex = 0;
             circle.SetActive(false);
             TR.EndCommand();
             TR.enabled = false;
@@ -54,8 +46,9 @@ public class ToolManager : MonoBehaviour
             IP.StartCommand();
             mode.text = "Mode: Build";
         }
-        else if (listindex == 1)
+        else if (listindex == 0)
         {
+            listindex = 1;
             circle.SetActive(true);
             IP.EndCommand();
             IP.enabled = false;
@@ -63,8 +56,9 @@ public class ToolManager : MonoBehaviour
             TD.StartCommand();
             mode.text = "Mode: Destroy";
         }
-        else if (listindex == 2)
+        else if (listindex == 1)
         {
+            listindex = 2;
             TD.EndCommand();
             TD.enabled = false;
             TR.enabled = true;

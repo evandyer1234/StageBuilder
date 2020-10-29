@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     Rigidbody rb;
     public float bottom = -5f;
     public bool grounded = false;
+    public GameObject cam;
 
     void Start()
     {

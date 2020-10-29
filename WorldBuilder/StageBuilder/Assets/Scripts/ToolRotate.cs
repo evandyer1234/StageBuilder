@@ -38,9 +38,34 @@ public class ToolRotate : ToolDestroy
     {
         if (selecting)
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Selection != null)
             {
-                Selection.transform.localEulerAngles = new Vector3(Selection.transform.rotation.x + speed * Time.fixedDeltaTime, Selection.transform.rotation.y, Selection.transform.rotation.z);
+                /*
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    Selection.transform.localEulerAngles += new Vector3(Selection.transform.rotation.x + speed * Time.fixedDeltaTime, Selection.transform.rotation.y, Selection.transform.rotation.z);
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    Selection.transform.localEulerAngles += new Vector3(Selection.transform.rotation.x + -speed * Time.fixedDeltaTime, Selection.transform.rotation.y, Selection.transform.rotation.z);
+                }
+                */
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    Selection.transform.localEulerAngles += new Vector3(speed * Time.fixedDeltaTime, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    Selection.transform.localEulerAngles += new Vector3(-speed * Time.fixedDeltaTime, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    Selection.transform.localEulerAngles += new Vector3(0, speed * Time.fixedDeltaTime, 0);
+                }
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    Selection.transform.localEulerAngles += new Vector3(0,-speed * Time.fixedDeltaTime, 0);
+                }
             }
         }
     }

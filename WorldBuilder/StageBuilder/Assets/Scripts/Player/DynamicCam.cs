@@ -5,9 +5,16 @@ using UnityEngine;
 public class DynamicCam : MonoBehaviour
 {
     public GameObject target;
-    public float distance = 3f;
+    public GameObject center;
+    public GameObject endtrans;
+
     Vector3 MoveDirection;
-    public float speed = 10f;
+    public Vector2 campos = new Vector2(3.5f, 4.5f);
+
+    public float distance = 3f;    
+    public float speed = 10f;   
+    public float rotrate = 0.1f;
+    public float downrate = 0.1f;
 
     void Awake()
     {
@@ -31,6 +38,22 @@ public class DynamicCam : MonoBehaviour
     void Update()
     {
         MoveDirection = (target.gameObject.transform.position - transform.position).normalized;
-        gameObject.transform.forward = MoveDirection;
+        endtrans.transform.forward = MoveDirection;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, endtrans.transform.rotation, rotrate);
+
+        
+        if (transform.position.y - target.transform.position.y > campos.y)
+        {
+            transform.position -= new Vector3(0, downrate, 0);
+            //transform.position -= new Vector3(0, (transform.position.y - target.transform.position.y - campos.y), 0);
+        }
+        else if(transform.position.y - target.transform.position.y < campos.x)
+        {
+            transform.position += new Vector3(0, downrate, 0);
+            //transform.position += new Vector3(0, (transform.position.y - target.transform.position.y - campos.x), 0);
+        }
+        
+
     }
 }

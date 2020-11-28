@@ -27,7 +27,7 @@ public class EndGoal : MonoBehaviour
         if (p != null)
         {
             win();
-            p.cam.transform.SetParent(spinner.transform);
+            p.cam.gameObject.transform.SetParent(spinner.transform);
         }
     }
     public void win()
